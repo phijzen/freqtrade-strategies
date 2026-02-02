@@ -77,3 +77,5 @@ target/
 .venv
 .idea
 .vscode
+
+user_data/config.json

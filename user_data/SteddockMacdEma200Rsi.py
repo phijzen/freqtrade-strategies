@@ -10,7 +10,7 @@ from freqtrade.strategy import IntParameter
 from freqtrade.persistence import Trade
 
 
-class EmaMacdRsiStable(IStrategy):
+class SteddockMacdEma200Rsi(IStrategy):
     """
     Stable BTC/USDC trend-following strategy:
     - EMA200 defines market regime
