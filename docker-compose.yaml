@@ -3,7 +3,7 @@
 services:
   freqtrade:
     image: freqtradeorg/freqtrade:stable_freqaitorch
-    restart: unless-stopped
+    restart: no
     container_name: freqtrade
     volumes:
       - "./user_data:/freqtrade/user_data"
@@ -11,11 +11,28 @@ services:
     # Please read the https://www.freqtrade.io/en/stable/rest-api/ documentation
     # for more information.
     ports:
-      - "0.0.0.0:3080:8080"
-    # Default command used when running `docker compose up`
+      - "0.0.0.0:4080:8080"
+
+    # MODE: DOWNLOAD DATA
+    # command: >
+    #  download-data
+    #  --trading-mode spot
+    #  --days 200
+    #  --exchange kraken
+    #  --pairs BTC/USDC
+    #  -t 1h
+
+    # MODE: BACKTESTING
     command: >
-      trade
-      --logfile /freqtrade/user_data/logs/freqtrade.log
-      --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
-      --config /freqtrade/user_data/config.json
-      --strategy GodStra
+      backtesting
+      --strategy SteddockMacdEma200Rsi
+      -i 1h
+
+
+    # MODE: TRADEBOT
+    #command: >
+    #  trade
+    #  --logfile /freqtrade/user_data/logs/freqtrade.log
+    #  --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
+    #  --config /freqtrade/user_data/config.json
+    #  --strategy GodStra
