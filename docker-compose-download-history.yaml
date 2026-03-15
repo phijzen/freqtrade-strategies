@@ -1,0 +1,25 @@
+# Source: https://github.com/freqtrade/freqtrade/blob/develop/docker/docker-compose-freqai.yml
+---
+services:
+  freqtrade:
+    image: freqtradeorg/freqtrade:stable_freqaitorch
+    restart: no
+    container_name: freqtrade
+    volumes:
+      - "./user_data:/freqtrade/user_data"
+    # Expose api on port 8080 (localhost only)
+    # Please read the https://www.freqtrade.io/en/stable/rest-api/ documentation
+    # for more information.
+    ports:
+      - "0.0.0.0:4080:8080"
+
+    # MODE: DOWNLOAD DATA
+    command: >
+      download-data
+      --trading-mode spot
+      --days 200
+      --exchange kraken
+      --pairs BTC/USDC
+      -t 1h
+
+    

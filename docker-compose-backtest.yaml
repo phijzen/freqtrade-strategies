@@ -12,27 +12,10 @@ services:
     # for more information.
     ports:
       - "0.0.0.0:4080:8080"
-
-    # MODE: DOWNLOAD DATA
-    # command: >
-    #  download-data
-    #  --trading-mode spot
-    #  --days 200
-    #  --exchange kraken
-    #  --pairs BTC/USDC
-    #  -t 1h
-
+ 
     # MODE: BACKTESTING
     command: >
       backtesting
       --strategy SteddockMacdEma200Rsi
       -i 1h
 
-
-    # MODE: TRADEBOT
-    #command: >
-    #  trade
-    #  --logfile /freqtrade/user_data/logs/freqtrade.log
-    #  --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
-    #  --config /freqtrade/user_data/config.json
-    #  --strategy GodStra
